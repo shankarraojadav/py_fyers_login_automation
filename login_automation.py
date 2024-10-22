@@ -47,7 +47,9 @@ import pyotp as tp
 # driver = webdriver.Chrome()
 # Set Chrome options for headless mode
 options = Options()
-options.add_argument('--headless=new')
+options.add_argument("--enable-logging")
+options.add_argument("--v=1")
+
 
 # Initialize Chrome webdriver
 driver = webdriver.Chrome(options=options)
@@ -63,11 +65,13 @@ elem.click()
 time.sleep(1)
 client_id_input_x_path='//*[@id="fy_client_id"]'
 elem2 = driver.find_element(By.XPATH, client_id_input_x_path)
-elem2.send_keys("KASDJFLADF")
+elem2.send_keys(user_name)
 elem2.send_keys(Keys.RETURN)
 time.sleep(1)
 
 t=tp.TOTP(totp_key).now()
+
+print(t)
 
 
 
